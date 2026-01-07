@@ -30,4 +30,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          python issue_bot.py
+          python todone.py

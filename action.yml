@@ -1,0 +1,24 @@
+name: 'TODOne'
+description: 'Automatically creates GitHub Issues from TODO comments in your code.'
+author: 'kplunkett05'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+runs:
+  using: 'composite'
+  steps: 
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install Dependencies
+      run: pip install requests
+      shell: bash
+
+    - name: Run TODOne
+      run: python ${{ github.action_path }}/todone.py
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}

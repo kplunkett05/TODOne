@@ -17,7 +17,7 @@ def create_issue(title, body, filepath, line_num):
     print(f"Creating issue: {title}")
     data = {
         "title": title,
-        "body": f"Found in `{filepath}` at line `{line_num}\n{body}",
+        "body": f"Found in `{filepath}` at line `{line_num}`:\n\n{body}",
         "labels": ["todone"]
     }
     
@@ -35,7 +35,7 @@ def scan_files():
             continue
         
         for file in files:
-            if file.endswith((".py", ".js", ".ts", ".cs", ".java", ".cpp", ".c", ".rs", ".cpp", ".rb")):
+            if file.endswith((".py", ".js", ".ts", ".cs", ".java", ".cpp", ".c", ".rs", ".rb", ".go")):
                 filepath = os.path.join(root, file)
 
                 with open(filepath, "r", errors="ignore") as f:
