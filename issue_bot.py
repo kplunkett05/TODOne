@@ -4,7 +4,7 @@ import re
 
 REPO = os.getenv("GITHUB_REPOSITORY")
 TOKEN = os.getenv("GITHUB_TOKEN")
-API_URL = f"https://api.github.repos/{REPO}/issues"
+API_URL = f"https://api.github.com/repos/{REPO}/issues"
 
 headers = {"Authorization": f"token {TOKEN}", "Accept": "application/vnd.github.v3+json"}
 
