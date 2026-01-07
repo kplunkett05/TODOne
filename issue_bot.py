@@ -21,11 +21,14 @@ def create_issue(title, body, filepath, line_num):
         "labels": ["todone"]
     }
     
-    requests.post(API_URL, headers=headers, json=data)
+    response = requests.post(API_URL, headers=headers, json=data)
+
+    if response.status_code != 201:
+        print(f"Error creating issue: {response.status_code} - {response.text}")
 
 def scan_files():
     existing_titles = get_existing_issues()
-    todo_pattern = re.compile(r'(#|//)\s*TODO:\s*(.*)')
+    todo_pattern = re.compile(r'(#|//)\s*TODO[:]?\s*(.*)', re.IGNORECASE)
 
     for root, dirs, files in os.walk("."):
         if ".git" in root or "node_modules" in root:
